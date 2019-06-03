@@ -1,0 +1,54 @@
+{
+    "users": [
+                    {
+                    "name": "Bob Dylan", 
+                    "username": "bobbyd@gmail.com", 
+                    "title": "I'll Sing For You", 
+                    "tagline": "I will get you there. I am a guide that does something. I'm not sure who the audience for this app is", 
+                    "age": 38, 
+                    "experience": 9, 
+                    "userId": 1
+                    
+
+                    },
+                    {
+                        "name": "Celine Freon", 
+                        "username": "ceefee@gmail.com", 
+                        "title": "I'll Sing For You", 
+                        "tagline": "I will get you there. I am a guide that does something. I'm not sure who the audience for this app is", 
+                        "age": 43, 
+                        "experience": 4, 
+                        "userId": 2 
+                        
+    
+                        }
+
+
+            ],
+     "trips": [
+                {
+                "title": "A trip down the backcountry", 
+                "description": "I'll take you where no man has gone before", 
+                "catgory": "professional", 
+                "type": "Hiking Tour", 
+                "duration": "8 hours", 
+                "date": "12/02/2020", 
+                "location": "Washington",
+                "tripId": 1,
+                "userId": 1
+
+                }, 
+                {
+                "title": "A trip down the backcountry", 
+                "description": "I'll take you where no man has gone before", 
+                "catgory": "private", 
+                "type": "Dylan Family Reunion", 
+                "duration": "4 hours", 
+                "date": "10/2019", 
+                "location": "Washington", 
+                "tripId": 2, 
+                "userId": 2
+
+                }
+            ] 
+}
