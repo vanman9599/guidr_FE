@@ -1,12 +1,13 @@
-imporimport React, { Component } from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import import React, { Component } from 'react';
-import './App.css';
+import ListUsers from './ListUsers';
+import { BrowserRouter as Router, Route, NavLink, withRouter } from 'react-router-dom';
+import AddUserForm from  './AddUserForm';
+
+
 import { connect } from "react-redux";
 // import { Button } from "reactstrap";
-
-
-import { getSmurfs, addSmurf } from "../actions";
+import { getUsers, addUser } from "../actions";
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -14,76 +15,44 @@ import { getSmurfs, addSmurf } from "../actions";
  `How do I ensure that my component links the state to props?`
  */
 class App extends Component {
-
-  state = {
-    
-      name: '',
-      age: '', 
-      height: ''
-    
+ constructor(props){
+  super(props);
+  this.state = {
+    users: []
   }
+ };
+ 
+ 
 
-  onClick = e => {
-    e.preventDefault();
-    const newSmurf = { name: this.state.name, 
-                        age: this.state.age, 
-                      height: this.state.height}
-    this.props.addSmurf(newSmurf)
-    this.setState({name: '', age: '', height: ''})
-  }
-
-  handleChange = e => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value
-    });
-  };
+ componentDidMount(){
+   this.props.getUsers();
+ }
   render() {
     return (
       <div className="App">
-       {this.props.smurfs.map(smurf => {
-         return(
-           <div>
-          <h1>{smurf.name}</h1>
-          <ul>
-            <li>Age: {smurf.age}</li>
-            <li>Height: {smurf.height}</li>
-          </ul>
-          </div>
-         );
-       })}
-      
-         <input onChange={this.handleChange} type="text" name="name" placeholder="Name" />
-         <input onChange={this.handleChange}  type="text" name="age" placeholder="Age" />
-         <input onChange={this.handleChange}  type="text" name="height" placeholder="Height" />
-         <button  onChange={this.handleChange}  onClick={this.onClick}>Add Smurf</button>
+        <div className="nav-links">
+          <NavLink to='/add-user-form'>Sign-up</NavLink>
+          <NavLink exact to="/">Home</NavLink>
+          <NavLink to="/list-users">List Guides</NavLink>
+        </div>
+        {console.log("users: ", this.props.users)}
+        <Route path='/list-users/' render={props => <ListUsers users={this.props.users} />} />
          
+        <Route path='/add-user-form' render={props => <AddUserForm {...props} />} />
        
       </div>
     );
   };
 
 
-componentDidMount(){
-  this.props.getUsers();
-}
+
 }
 const mapStateToProps = state => {
   return{
-    smurfs: state.smurfs
+    users: state.users
   }
 }
 export default connect(
   mapStateToProps,
-  { getSmurfs, addSmurf })(App);{ connect } from "react-redux";
-import './App.css';
+  { getUsers, addUser })(App);
 
-function App() {
-  return (
-    <div className="App">
-      
-    </div>
-  );
-}
-
-export default App;

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from "react-redux";
 // import { Button } from "reactstrap";
+ import { create_UUID }  from '../utils';
 
-murf
 import { addUser } from "../actions";
 /*
  to wire this component up you're going to need a few things.
@@ -44,14 +44,15 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="App">
+      <div className="add-user-form">
             
          <input onChange={this.handleChange} type="text" name="name" placeholder="Name" />
          <input onChange={this.handleChange}  type="text" name="username" placeholder="Username" />
          <input onChange={this.handleChange}  type="number" name="age" placeholder="Age" />
          <input onChange={this.handleChange}  type="text" name="title" placeholder="Title" />
          <input onChange={this.handleChange}  type="text" name="tagline" placeholder="Tagline" />
-         <input onChange={this.handleChange}  type="text" name="experience" placeholder="# of years experience" />
+         <input onChange={this.handleChange}  type="number" name="experience" placeholder="# of years experience" />
+         <input type="hidden" name="userId" value={create_UUID()} />
          <button  onChange={this.handleChange}  onClick={this.onClick}>Add User</button>
          
        
@@ -63,14 +64,15 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   return{
-    name: this.state.name, 
-                        username: this.state.username, 
-                     title: this.state.title, 
-                     age: this.state.age, 
-                    tagline: this.state.tagline, 
-                    experience: this.state.experience
+        name: this.state.name, 
+        username: this.state.username, 
+        title: this.state.title, 
+        age: this.state.age, 
+        tagline: this.state.tagline, 
+        experience: this.state.experience, 
+        userId: this.state.userId
         }
 }
 export default connect(
   mapStateToProps,
-  { getUser, addUser })(App);
+  { addUser })(App);

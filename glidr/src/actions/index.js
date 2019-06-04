@@ -4,7 +4,7 @@ import axios from 'axios';
 export const FETCH_USER_START = "FETCH_USER_START";
 export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
 export const FETCH_USER_ERROR = "FETCH_USER_ERROR";
-export const ADD_PROFILE = "ADD_PROFILE";
+export const ADD_PROFILE_START= "ADD_PROFILE";
 export const ADD_PROFILE_SUCCESS = "ADD_PROFILE_SUCCESS";
 export const ADD_PROFILE_ERROR = "ADD_PROFILE_ERROR";
 export const EDIT_PROFILE = "EDIT_PROFILE";
@@ -49,7 +49,30 @@ export const getUsers = () => {
       .catch(err => {
         dispatch({
           type: FETCH_USERS_ERROR, 
-          payload: err.response
+          error: err.response
+        });
+      });
+    }
+  }
+
+  export const addUser = (user) => {
+    return dispatch => {
+      dispatch({
+        type: ADD_PROFILE_START
+      });
+      axios
+      .post("http://localhost:3000/users", user)
+      .then(res => {
+        console.log("Res Data", res.data);
+        dispatch({
+          type: ADD_PROFILE_SUCCESS,
+          users: res.data
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: ADD_PROFILE_ERROR, 
+          users: err.response
         });
       });
     }
