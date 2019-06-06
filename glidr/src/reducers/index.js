@@ -2,15 +2,15 @@ import {
 FETCH_USER_START,
 FETCH_USER_SUCCESS,
 FETCH_USER_ERROR,
-ADD_PROFILE_START,
-ADD_PROFILE_SUCCESS,
-ADD_PROFILE_ERROR,
-EDIT_PROFILE,
-EDIT_PROFILE_SUCCESS,
-EDIT_PROFILE_ERROR,
-DELETE_PROFILE,
-DELETE_PROFILE_SUCCESS,
-DELETE_PROFILE_ERROR,
+ADD_USER_START,
+ADD_USER_SUCCESS,
+ADD_USER_ERROR,
+EDIT_USER_START,
+EDIT_USER_SUCCESS,
+EDIT_USER_ERROR,
+DELETE_USER_START,
+DELETE_USER_SUCCESS,
+DELETE_USER_ERROR,
 
 //LIST ALL USERS
 FETCH_USERS_START,
@@ -20,13 +20,13 @@ FETCH_USERS_ERROR,
 FETCH_TRIP_START,
 FETCH_TRIP_SUCCESS,
 FETCH_TRIP_ERROR,
-ADD_TRIP,
+ADD_TRIP_START,
 ADD_TRIP_SUCCESS,
 ADD_TRIP_ERROR,
-EDIT_TRIP,
+EDIT_TRIP_START,
 EDIT_TRIP_SUCCESS,
 EDIT_TRIP_ERROR,
-DELETE_TRIP,
+DELETE_TRIP_START,
 DELETE_TRIP_SUCCESS,
 DELETE_TRIP_ERROR
 } from '../actions';
@@ -71,21 +71,27 @@ const initialState = {
          error: "", 
          fetchingUsers: false
        }
-     case ADD_PROFILE_START:
+     case ADD_USER_START:
      return{
        ...state, 
        error: '', 
        addingUser: true
      }
-     case ADD_PROFILE_SUCCESS:
+     case ADD_USER_SUCCESS:
          return{
            ...state, 
            error: '', 
            addingUser: false, 
            users: [...state.users, action.users]
          }
+     case ADD_USER_ERROR:
+       return{
+         ...state, 
+         error: "", 
+         addingUser: false
+       }
      default: 
-     return state
+     return state 
    }
  }
  

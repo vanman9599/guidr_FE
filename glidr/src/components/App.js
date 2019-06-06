@@ -3,6 +3,7 @@ import './App.css';
 import ListUsers from './ListUsers';
 import { BrowserRouter as Router, Route, NavLink, withRouter } from 'react-router-dom';
 import AddUserForm from  './AddUserForm';
+import Register from './Register'
 
 
 import { connect } from "react-redux";
@@ -22,7 +23,6 @@ class App extends Component {
   }
  };
  
- 
 
  componentDidMount(){
    this.props.getUsers();
@@ -31,14 +31,14 @@ class App extends Component {
     return (
       <div className="App">
         <div className="nav-links">
-          <NavLink to='/add-user-form'>Sign-up</NavLink>
+          <NavLink to='/register'>Sign-up</NavLink>
           <NavLink exact to="/">Home</NavLink>
           <NavLink to="/list-users">List Guides</NavLink>
         </div>
         {console.log("users: ", this.props.users)}
         <Route path='/list-users/' render={props => <ListUsers users={this.props.users} />} />
          
-        <Route path='/add-user-form' render={props => <AddUserForm {...props} />} />
+        <Route path='/register' render={props => <Register {...props} />} />
        
       </div>
     );

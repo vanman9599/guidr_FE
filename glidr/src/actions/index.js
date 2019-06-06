@@ -4,15 +4,15 @@ import axios from 'axios';
 export const FETCH_USER_START = "FETCH_USER_START";
 export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
 export const FETCH_USER_ERROR = "FETCH_USER_ERROR";
-export const ADD_PROFILE_START= "ADD_PROFILE";
-export const ADD_PROFILE_SUCCESS = "ADD_PROFILE_SUCCESS";
-export const ADD_PROFILE_ERROR = "ADD_PROFILE_ERROR";
-export const EDIT_PROFILE = "EDIT_PROFILE";
-export const EDIT_PROFILE_SUCCESS = "EDIT_PROFILE_SUCCESS";
-export const EDIT_PROFILE_ERROR = "EDIT_PROFILE_ERROR";
-export const DELETE_PROFILE = "DELETE_PROFILE";
-export const DELETE_PROFILE_SUCCESS = "DELETE_PROFILE_SUCCESS";
-export const DELETE_PROFILE_ERROR = "DELETE_PROFILE_ERROR";
+export const ADD_USER_START= "ADD_USER";
+export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
+export const ADD_USER_ERROR = "ADD_USER_ERROR";
+export const EDIT_USER_START = "EDIT_USER";
+export const EDIT_USER_SUCCESS = "EDIT_USER_SUCCESS";
+export const EDIT_USER_ERROR = "EDIT_USER_ERROR";
+export const DELETE_USER_START = "DELETE_USER";
+export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
+export const DELETE_USER_ERROR = "DELETE_USER_ERROR";
 
 //LIST ALL USERS
 export const FETCH_USERS_START = "FETCH_USER_START";
@@ -22,10 +22,10 @@ export const FETCH_USERS_ERROR = "FETCH_USER_ERROR";
 export const FETCH_TRIP_START = "FETCH_TRIP_START";
 export const FETCH_TRIP_SUCCESS = "FETCH_TRIP_SUCCESS";
 export const FETCH_TRIP_ERROR = "FETCH_TRIP_ERROR";
-export const ADD_TRIP = "ADD_TRIP";
+export const ADD_TRIP_START = "ADD_TRIP";
 export const ADD_TRIP_SUCCESS = "ADD_tRIP_SUCCESS";
 export const ADD_TRIP_ERROR = "ADD_TRIP_ERROR";
-export const EDIT_TRIP = "EDIT_TRIP";
+export const EDIT_TRIP_START = "EDIT_TRIP";
 export const EDIT_TRIP_SUCCESS = "EDIT_TRIP_SUCCESS";
 export const EDIT_TRIP_ERROR = "EDIT_TRIP_ERROR";
 export const DELETE_TRIP = "DELETE_TRIP";
@@ -38,7 +38,7 @@ export const getUsers = () => {
         type: FETCH_USERS_START
       });
       axios
-      .get("http://localhost:3000/users")
+      .get("https://ls-guidr.herokuapp.com/api/users")
       .then(res => {
         console.log(" Data", res.data);
         dispatch({
@@ -58,22 +58,32 @@ export const getUsers = () => {
   export const addUser = (user) => {
     return dispatch => {
       dispatch({
-        type: ADD_PROFILE_START
+        type: ADD_USER_START
       });
       axios
-      .post("http://localhost:3000/users", user)
+      .post("https://ls-guidr.herokuapp.com/api/auth/register", user)
       .then(res => {
         console.log("Res Data", res.data);
         dispatch({
-          type: ADD_PROFILE_SUCCESS,
+          type: ADD_USER_SUCCESS,
           users: res.data
         });
       })
       .catch(err => {
         dispatch({
-          type: ADD_PROFILE_ERROR, 
+          type: ADD_USER_ERROR, 
           users: err.response
         });
       });
     }
+  }
+
+  export const editUser = user => {
+      return dispatch => {
+          dispatch({
+              type: EDIT_USER_START
+          });
+          axios
+          .put()
+      }
   }
