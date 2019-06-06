@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import axiosWithAuth from '../axiosWithAuth';
 //FETCH, ADD, EDIT, UPDATE A SINGLE USER
 export const FETCH_USER_START = "FETCH_USER_START";
 export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
@@ -15,9 +15,9 @@ export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
 export const DELETE_USER_ERROR = "DELETE_USER_ERROR";
 
 //LIST ALL USERS
-export const FETCH_USERS_START = "FETCH_USER_START";
-export const FETCH_USERS_SUCCESS = "FETCH_USER_SUCCESS";
-export const FETCH_USERS_ERROR = "FETCH_USER_ERROR";
+export const FETCH_USERS_START = "FETCH_USERS_START";
+export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
+export const FETCH_USERS_ERROR = "FETCH_USERS_ERROR";
 
 export const FETCH_TRIP_START = "FETCH_TRIP_START";
 export const FETCH_TRIP_SUCCESS = "FETCH_TRIP_SUCCESS";
@@ -32,12 +32,27 @@ export const DELETE_TRIP = "DELETE_TRIP";
 export const DELETE_TRIP_SUCCESS = "DELETE_TRIP_SUCCESS";
 export const DELETE_TRIP_ERROR = "DELETE_TRIP_ERROR";
 
-export const getUsers = () => {
-    return dispatch => {
+export const LOGIN_START = "LOGIN_START";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+
+
+export const login = creds => dispatch => {
+    dispatch({ type: LOGIN_START});
+    return axiosWithAuth()
+    .post("https://ls-guidr.herokuapp.com/api/auth/login", creds)
+    .then(res => {
+        localStorage.setItem('token', res.data);
+        dispatch({ type: LOGIN_SUCCESS, payload: res.data});
+    })
+    .catch(err => console.log(err));
+}
+
+export const getUsers = () => dispatch => {
+    
       dispatch({
         type: FETCH_USERS_START
       });
-      axios
+      return axiosWithAuth()
       .get("https://ls-guidr.herokuapp.com/api/users")
       .then(res => {
         console.log(" Data", res.data);
@@ -52,7 +67,7 @@ export const getUsers = () => {
           error: err.response
         });
       });
-    }
+    
   }
 
   export const addUser = (user) => {
@@ -60,7 +75,7 @@ export const getUsers = () => {
       dispatch({
         type: ADD_USER_START
       });
-      axios
+      return axios
       .post("https://ls-guidr.herokuapp.com/api/auth/register", user)
       .then(res => {
         console.log("Res Data", res.data);
@@ -86,4 +101,27 @@ export const getUsers = () => {
           axios
           .put()
       }
+  }
+  
+  export const editProfile = (user) => {
+    return dispatch => {
+      dispatch({
+        type: EDIT_USER_START
+      });
+      return axios
+      .put(`https://ls-guidr.herokuapp.com/api/profile/${user.userId}`, user)
+      .then(res => {
+        console.log("Res Data", res.data);
+        dispatch({
+          type: EDIT_USER_SUCCESS,
+          profile: res.data
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: EDIT_USER_ERROR, 
+          profile: err.response
+        });
+      });
+    }
   }

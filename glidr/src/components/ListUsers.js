@@ -4,7 +4,7 @@ const ListUsers = (props) => {
    return props.users.map(user=>
    <div>
     <h1>{user.username}</h1>
-    <p>UserId: {user.userId}</p>
+    <p>UserId: {user.id}</p>
     
     
     

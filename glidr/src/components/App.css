@@ -41,4 +41,13 @@
   }
   .add-user-form input{
     margin-top: 5px;
+    
+  }
+
+  .nav-links{
+    display: flex;
+    justify-content:space-around;
+    padding: 10px;
+    text-decoration: none;
+    align-items: flex-end;
   }

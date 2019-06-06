@@ -22,15 +22,16 @@ class Register extends Component {
 
   
 
-  onClick = e => {
+  registerUser = e => {
     e.preventDefault();
     const newUser = {  username: this.state.username, 
-                     password: this.state.password,
+                     password: this.state.password
                     }
-    this.props.addUser(newUser).then(() => {
-        this.props.history.push('/protected');
+     this.props.addUser(newUser).then(() => {
+        this.props.history.push('/list-users');
     
-    this.setState({username: '', password: ''})
+    this.setState({username: '', password: ''});
+  })
   }
 
   handleChange = e => {
@@ -39,6 +40,7 @@ class Register extends Component {
       [name]: value
     });
   };
+
   render() {
     return (
       <div className="add-user-form">
@@ -48,7 +50,7 @@ class Register extends Component {
          <input onChange={this.handleChange} value={this.state.password} type="password" name="password" placeholder="Passworde" />
 
          
-         <button  onChange={this.handleChange}  onClick={this.onClick}>Register</button>
+         <button  onChange={this.handleChange}  onClick={this.registerUser}>Register</button>
          
        
       </div>

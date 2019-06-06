@@ -3,12 +3,16 @@ import './App.css';
 import ListUsers from './ListUsers';
 import { BrowserRouter as Router, Route, NavLink, withRouter } from 'react-router-dom';
 import AddUserForm from  './AddUserForm';
-import Register from './Register'
+import Register from './Register'; 
+import Login from './Login';
+import { create_UUID } from '../utils';
+import  PrivateRoute  from '../PrivateRoute';
+import AddProfileForm from './AddProfileForm';
 
 
 import { connect } from "react-redux";
 // import { Button } from "reactstrap";
-import { getUsers, addUser } from "../actions";
+import { getUsers, addUser , editProfile} from "../actions";
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -34,11 +38,15 @@ class App extends Component {
           <NavLink to='/register'>Sign-up</NavLink>
           <NavLink exact to="/">Home</NavLink>
           <NavLink to="/list-users">List Guides</NavLink>
+          <NavLink exact to="/login">Login</NavLink>
+          <NavLink to="/edit-profile">Edit Profile</NavLink>
         </div>
         {console.log("users: ", this.props.users)}
-        <Route path='/list-users/' render={props => <ListUsers users={this.props.users} />} />
-         
+        <PrivateRoute path='/list-users/' render={props => <ListUsers users={this.props.users} />} />
+         <PrivateRoute path='/edit-profile' render={props => <AddProfileForm {...props} />} />
         <Route path='/register' render={props => <Register {...props} />} />
+        <Route path='/login' render={props => <Login {...props} />} />
+        
        
       </div>
     );
@@ -54,5 +62,5 @@ const mapStateToProps = state => {
 }
 export default connect(
   mapStateToProps,
-  { getUsers, addUser })(App);
+  { getUsers, addUser, editProfile })(App);
 
