@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ListUsers from './ListUsers';
 import { BrowserRouter as Router, Route, NavLink, withRouter } from 'react-router-dom';
-import AddUserForm from  './AddUserForm';
+import AddUserForm from  './AddTripForm';
 import Register from './Register'; 
 import Login from './Login';
 import { create_UUID } from '../utils';
@@ -42,10 +42,10 @@ class App extends Component {
           <NavLink to="/edit-profile">Edit Profile</NavLink>
         </div>
         {console.log("users: ", this.props.users)}
-        <PrivateRoute path='/list-users/' render={props => <ListUsers users={this.props.users} />} />
-         <PrivateRoute path='/edit-profile' render={props => <AddProfileForm {...props} />} />
-        <Route path='/register' render={props => <Register {...props} />} />
-        <Route path='/login' render={props => <Login {...props} />} />
+        <PrivateRoute path='/list-users'  component={ListUsers} />
+        
+         <Route path='/register' component={Register} />
+        <Route path='/login' component={Login} />
         
        
       </div>

@@ -8,10 +8,10 @@ import { editProfile } from "../actions";
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
- Just remember, `how do I `connect` my components to redux?`
+ Just reme mber, `how do I `connect` my components to redux?`
  `How do I ensure that my component links the state to props?`
  */
-class AddProfilerForm extends Component {
+class AddProfileForm extends Component {
 
   state = {
     
@@ -80,15 +80,15 @@ class AddProfilerForm extends Component {
 }
 const mapStateToProps = state => {
   return{
-        name: state.name, 
-        username: state.username, 
-        title: state.title, 
+        first_name: state.first_name, 
+        last_name: state.last_name, 
         age: state.age, 
-        tagline: state.tagline, 
-        experience: state.experience, 
+        certs: state.certs, 
+        profile_text: state.profile_text, 
+        years_of_exp: state.years_of_exp
         userId: state.userId
         }
 }
 export default connect(
   mapStateToProps,
-  { editProfile })(AddProfilerForm);
+  { editProfile })(AddProfileForm);
