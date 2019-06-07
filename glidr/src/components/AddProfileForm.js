@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 // import { Button } from "reactstrap";
 
 
-import { editProfile } from "../actions";
+import { addProfile } from "../actions";
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -48,7 +48,7 @@ class AddProfileForm extends Component {
             profile_text: this.state.profile_text, 
             years_of_exp: this.years_of_exp
            }
-    this.props.editProfile(newProfile)
+    this.props.addProfile(newProfile)
     this.setState({first_name: '', last_name: '', age: '', certs: '', profile_text:'', years_of_exp: '' , userId: ''})
   }
 
@@ -92,4 +92,4 @@ const mapStateToProps = state => {
 }
 export default connect(
   mapStateToProps,
-  { editProfile })(AddProfileForm);
+  { addProfile })(AddProfileForm);

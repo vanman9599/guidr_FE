@@ -5,9 +5,10 @@ FETCH_USER_ERROR,
 ADD_USER_START,
 ADD_USER_SUCCESS,
 ADD_USER_ERROR,
-EDIT_USER_START,
-EDIT_USER_SUCCESS,
-EDIT_USER_ERROR,
+
+ADD_PROFILE_START,
+ADD_PROFILE_SUCCESS,
+ADD_PROFILE_ERROR,
 DELETE_USER_START,
 DELETE_USER_SUCCESS,
 DELETE_USER_ERROR,
@@ -90,6 +91,19 @@ const initialState = {
          error: "", 
          addingUser: false
        }
+       case ADD_PROFILE_START:
+       return{
+         ...state, 
+         error: "", 
+         addingUser: false
+       }
+       case ADD_PROFILE_SUCCESS:
+        return{
+          ...state, 
+          error: '', 
+          addingUser: false, 
+          profile: [...state.profile, action.profile]
+        }
      default: 
      return state 
    }

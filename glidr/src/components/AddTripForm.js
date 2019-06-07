@@ -55,7 +55,7 @@ class AddTripForm extends Component {
          <input onChange={this.handleChange} value={this.state.duration} type="text" name="duration" placeholder="Title" />
          <input onChange={this.handleChange} value={this.state.location} type="text" name="location" placeholder="Location" />
          <input onChange={this.handleChange} value={this.state.professional} type="number" name="professional" placeholder="Professional" />
-         <input onChange={this.handleChange} value={this.state.title} type="text" name="title" placeholder="Title" />
+         <input onChange={this.handleChange} value={this.state.title} type="text" name="title" placeholder="Title" /> 
          <input type="hidden" name="user_id" value={this.state.user_id} />
          <input type="radio" name="professional" value="true" selected />Proressional
          <input type="radio" name="professional" value="false" />Private

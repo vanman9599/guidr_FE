@@ -14,6 +14,11 @@ export const DELETE_USER_START = "DELETE_USER";
 export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
 export const DELETE_USER_ERROR = "DELETE_USER_ERROR";
 
+export const ADD_PROFILE_START = "ADD_PROFILE_START";
+export const ADD_PROFILE_SUCCESS = "ADD_PROFILE_SUCCESS";
+export const ADD_PROFILE_ERROR = "ADD_PROFILE_ERROR"
+
+
 //LIST ALL USERS
 export const FETCH_USERS_START = "FETCH_USERS_START";
 export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
@@ -41,8 +46,9 @@ export const login = creds => dispatch => {
     return axiosWithAuth()
     .post("https://ls-guidr.herokuapp.com/api/auth/login", creds)
     .then(res => {
-        localStorage.setItem('token', res.data);
-        dispatch({ type: LOGIN_SUCCESS, payload: res.data});
+      console.log("Token", res.data)
+        localStorage.setItem('token', res.data.token);
+        dispatch({ type: LOGIN_SUCCESS, users: res.data});
     })
     .catch(err => console.log(err));
 }
@@ -103,23 +109,23 @@ export const getUsers = () => dispatch => {
       }
   }
   
-  export const editProfile = (user) => {
+  export const addProfile = (profile) => {
     return dispatch => {
       dispatch({
-        type: EDIT_USER_START
+        type: ADD_PROFILE_START
       });
-      return axios
-      .put(`https://ls-guidr.herokuapp.com/api/profile/${user.userId}`, user)
+      return axiosWithAuth()
+      .put(`https://ls-guidr.herokuapp.com/api/profile/${profile.user_id}`, profile)
       .then(res => {
         console.log("Res Data", res.data);
         dispatch({
-          type: EDIT_USER_SUCCESS,
+          type: ADD_PROFILE_SUCCESS,
           profile: res.data
         });
       })
       .catch(err => {
         dispatch({
-          type: EDIT_USER_ERROR, 
+          type: ADD_PROFILE_ERROR, 
           profile: err.response
         });
       });
@@ -127,5 +133,9 @@ export const getUsers = () => dispatch => {
   }
 
   export const addTrip = (trip) => {
-    
+
+  }
+
+  export const editProfile = (profile) => {
+
   }
