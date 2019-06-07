@@ -62,12 +62,13 @@ class AddProfileForm extends Component {
     return (
       <div className="add-user-form">
             
-         <input onChange={this.handleChange} value={this.state.name} type="text" name="first_name" placeholder="first_name" />
-         <input onChange={this.handleChange} value={this.state.username} type="text" name="last_name" placeholder="last_name" />
+         <input onChange={this.handleChange} value={this.state.name} type="text" name="first_name" placeholder="First Name" />
+         <input onChange={this.handleChange} value={this.state.username} type="text" name="last_name" placeholder="Last Name" />
          <input onChange={this.handleChange} value={this.state.age} type="number" name="age" placeholder="Age" />
          <input onChange={this.handleChange} value={this.state.title} type="text" name="certs" placeholder="Certs" />
          <input onChange={this.handleChange} value={this.state.tagline} type="text" name="profile_text" placeholder="Description" />
          <input onChange={this.handleChange} value={this.state.experience} type="number" name="years_of_exp" placeholder="# of years experience" />
+         <input type="hidden" value={this.state.user_id} name="user_id" />
          
          <button  onChange={this.handleChange}  onClick={this.onClick}>Create Profile</button>
          
@@ -85,8 +86,8 @@ const mapStateToProps = state => {
         age: state.age, 
         certs: state.certs, 
         profile_text: state.profile_text, 
-        years_of_exp: state.years_of_exp
-        userId: state.userId
+        years_of_exp: state.years_of_exp,
+        user_id: state.user_id
         }
 }
 export default connect(

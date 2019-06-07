@@ -8,6 +8,7 @@ import Login from './Login';
 import { create_UUID } from '../utils';
 import  PrivateRoute  from '../PrivateRoute';
 import AddProfileForm from './AddProfileForm';
+import AddTripForm from './AddTripForm';
 
 
 import { connect } from "react-redux";
@@ -38,12 +39,14 @@ class App extends Component {
           <NavLink to='/register'>Sign-up</NavLink>
           <NavLink exact to="/">Home</NavLink>
           <NavLink to="/list-users">List Guides</NavLink>
-          <NavLink exact to="/login">Login</NavLink>
+          <NavLink to='/register'>Sign-up</NavLink>/<NavLink exact to="/login">Login</NavLink>
           <NavLink to="/edit-profile">Edit Profile</NavLink>
+          <NavLink to="/add-trip">Add Trip</NavLink>
         </div>
         {console.log("users: ", this.props.users)}
         <PrivateRoute path='/list-users'  component={ListUsers} />
-        
+        <PrivateRoute path='/edit-profile' component={AddProfileForm} />
+        <PrivateRoute path='/add-trip' component={AddTripForm} />
          <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
         

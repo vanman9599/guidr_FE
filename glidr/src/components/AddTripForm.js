@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 // import { Button } from "reactstrap";
 
 
-import { addUser } from "../actions";
+import { addTrip } from "../actions";
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -29,12 +29,11 @@ class AddTripForm extends Component {
     const newTrip = { user_id: this.state.user_id, 
                       adventure_type: this.state.adventure_type, 
                      date: this.state.date, 
-                     age: this.state.age, 
-                    description: this.state.description, 
+                     description: this.state.description, 
                     duration: this.state.duration,
                     location: this.state.location, 
                     professional: this.state.professional,
-                    title: this.state.title.
+                    title: this.state.title
                     }
     this.props.addTrip(newTrip)
     this.setState({user_id: '', adventure_type: '', descrption: '', duration: '', location:'', professional:'', title: ''})
@@ -51,30 +50,32 @@ class AddTripForm extends Component {
       <div className="add-user-form">
             
          <input onChange={this.handleChange} value={this.state.adventure_type} type="text" name="adventure_type" placeholder="Name" />
-         <input onChange={this.handleChange} value={this.state.username} type="text" name="date" placeholder="MM/DD/YYYY" />
-         <input onChange={this.handleChange} value={this.state.age} type="number" name="description" placeholder="Age" />
-         <input onChange={this.handleChange} value={this.state.title} type="text" name="duration" placeholder="Title" />
+         <input onChange={this.handleChange} value={this.state.date} type="text" name="date" placeholder="MM/DD/YYYY" />
+         <input onChange={this.handleChange} value={this.state.description} type="text" name="description" placeholder="Age" />
+         <input onChange={this.handleChange} value={this.state.duration} type="text" name="duration" placeholder="Title" />
          <input onChange={this.handleChange} value={this.state.location} type="text" name="location" placeholder="Location" />
-         <input onChange={this.handleChange} value={this.state.professional} type="number" name="professional" placeholder="Professina" />
-         <input type="radio" name="professional" value="true" selected>Proressional
-         <input type="radio" name="professional" value="false">Private
+         <input onChange={this.handleChange} value={this.state.professional} type="number" name="professional" placeholder="Professional" />
          <input onChange={this.handleChange} value={this.state.title} type="text" name="title" placeholder="Title" />
-         <button  onChange={this.handleChange}  onClick={this.onClick}>Register</button>
+         <input type="hidden" name="user_id" value={this.state.user_id} />
+         <input type="radio" name="professional" value="true" selected />Proressional
+         <input type="radio" name="professional" value="false" />Private
+         
+         <button  onChange={this.handleChange}  onClick={this.onClick}>Add Trip</button>
          
        
       </div>
     );
   };
 
-
+}
 const mapStateToProps = state => {
   return{
         user_id: state.user_id, 
         adventure_type: state.adventure_type, 
         date: state.date, 
-        description: state.age, 
-        duration: state.tagline, 
-        location: state.experience, 
+        description: state.description, 
+        duration: state.duration, 
+        location: state.location, 
         professional: state.date, 
         title: state.title
         }

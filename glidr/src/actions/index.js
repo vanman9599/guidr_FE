@@ -125,3 +125,7 @@ export const getUsers = () => dispatch => {
       });
     }
   }
+
+  export const addTrip = (trip) => {
+    
+  }
