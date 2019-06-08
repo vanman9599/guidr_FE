@@ -139,3 +139,7 @@ export const getUsers = () => dispatch => {
   export const editProfile = (profile) => {
 
   }
+
+  export const deleteUser = (id) => {
+
+  }
