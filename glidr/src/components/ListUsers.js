@@ -13,12 +13,16 @@ class ListUsers extends React.Component {
    componentDidMount() {
        this.props.getUsers();
    }
+
+   getUser =()=> {
+
+   }
    render() {
        console.log("Users on props", this.props);
        return this.props.users.map(user =>
            <div>
-               <div>{user.username}</div>
-               <div>UserId: {user.id}</div>
+              <div>{user.username} <a href="#">delete</a></div>
+               
            </div>
        )
    }

@@ -45,7 +45,7 @@ class App extends Component {
         </div>
         {console.log("users: ", this.props.users)}
         <PrivateRoute path='/list-users'  component={ListUsers} />
-        <PrivateRoute path='/edit-profile' component={AddProfileForm} />
+        <PrivateRoute path='/edit-profile/:id' component={AddProfileForm} />
         <PrivateRoute path='/add-trip' component={AddTripForm} />
          <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />

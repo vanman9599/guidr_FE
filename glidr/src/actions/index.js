@@ -110,11 +110,13 @@ export const getUsers = () => dispatch => {
   }
   
   export const addProfile = profile => dispatch => {
-    return dispatch => {
+    // dispatch({type: action-type})
+    // axios call
+    console.log("Profile", profile);
       dispatch({
         type: ADD_PROFILE_START
       });
-      return axiosWithAuth()
+      axiosWithAuth()
       .put(`https://ls-guidr.herokuapp.com/api/profile/${profile.user_id}`, profile)
       .then(res => {
         console.log("Res Data", res.data);
@@ -132,7 +134,7 @@ export const getUsers = () => dispatch => {
         });
       });
     }
-  }
+  
 
   export const addTrip = (trip) => {
 

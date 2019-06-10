@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from "react-redux";
+import axios from 'axios';
 // import { Button } from "reactstrap";
 
 
@@ -38,7 +39,17 @@ class AddProfileForm extends Component {
 
   */
  componentDidMount(){
-  
+   const { match: { params }} = this.props;
+    axios
+    .get(`https://ls-guidr.herokuapp.com/api/profile/${params.id}`)
+    .then(
+      this.setState({
+        user_id: params.id
+      }) 
+    )
+    .catch(err => {
+      console.log(err);
+    })
  }
 
   handleClick = e => {
