@@ -109,7 +109,7 @@ export const getUsers = () => dispatch => {
       }
   }
   
-  export const addProfile = (profile) => {
+  export const addProfile = profile => dispatch => {
     return dispatch => {
       dispatch({
         type: ADD_PROFILE_START

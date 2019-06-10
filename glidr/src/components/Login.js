@@ -21,7 +21,7 @@ class Login extends Component {
 
   
 
-  hanldeClick = e => {
+  handleClick = e => {
     e.preventDefault();
     const user = {  
                         username: this.state.username, 
