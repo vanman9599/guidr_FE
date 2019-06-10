@@ -40,7 +40,7 @@ class AddProfileForm extends Component {
 
   onClick = e => {
     e.preventDefault();
-        const newProfile = { user_id: '',
+        const newProfile = { user_id: this.state.user_id,
             first_name: this.state.first_name, 
             last_name: this.state.last_name, 
             age: this.state.age, 

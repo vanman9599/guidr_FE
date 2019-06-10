@@ -95,15 +95,22 @@ const initialState = {
        return{
          ...state, 
          error: "", 
-         addingUser: false
+         updatingUser: false
        }
        case ADD_PROFILE_SUCCESS:
         return{
           ...state, 
           error: '', 
-          addingUser: false, 
+          updatingUser: true, 
           profile: [...state.profile, action.profile]
         }
+        case ADD_PROFILE_ERROR:
+          return{
+            ...state, 
+            error: 'Error updating profile', 
+            updatingUser: false, 
+
+          }
      default: 
      return state 
    }

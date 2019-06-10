@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import ListUsers from './ListUsers';
 import { BrowserRouter as Router, Route, NavLink, withRouter } from 'react-router-dom';
-import AddUserForm from  './AddTripForm';
+import AddTripForm from  './AddTripForm';
 import Register from './Register'; 
 import Login from './Login';
 import { create_UUID } from '../utils';
 import  PrivateRoute  from '../PrivateRoute';
 import AddProfileForm from './AddProfileForm';
-import AddTripForm from './AddTripForm';
+
 
 
 import { connect } from "react-redux";
@@ -66,4 +66,3 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getUsers, addUser, editProfile })(App);
-

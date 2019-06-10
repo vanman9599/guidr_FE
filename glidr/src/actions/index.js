@@ -118,15 +118,17 @@ export const getUsers = () => dispatch => {
       .put(`https://ls-guidr.herokuapp.com/api/profile/${profile.user_id}`, profile)
       .then(res => {
         console.log("Res Data", res.data);
+        console.log("userID", profile.user_id)
         dispatch({
           type: ADD_PROFILE_SUCCESS,
           profile: res.data
         });
       })
       .catch(err => {
+        console.log(profile.user_id)
         dispatch({
           type: ADD_PROFILE_ERROR, 
-          profile: err.response
+          error: err.response
         });
       });
     }
@@ -140,6 +142,4 @@ export const getUsers = () => dispatch => {
 
   }
 
-  export const deleteUser = (id) => {
-
-  }
+  
