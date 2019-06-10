@@ -37,8 +37,11 @@ class AddProfileForm extends Component {
 }
 
   */
+ componentDidMount(){
+  
+ }
 
-  onClick = e => {
+  handleClick = e => {
     e.preventDefault();
         const newProfile = { user_id: this.state.user_id,
             first_name: this.state.first_name, 
@@ -48,9 +51,9 @@ class AddProfileForm extends Component {
             profile_text: this.state.profile_text, 
             years_of_exp: this.years_of_exp
            }
-    this.props.addProfile(newProfile)
-    this.setState({first_name: '', last_name: '', age: '', certs: '', profile_text:'', years_of_exp: '' , userId: ''})
-  }
+    this.props.addProfile(newProfile);
+    this.setState({newProfile: {first_name: '', last_name: '', age: '', certs: '', profile_text:'', years_of_exp: '' , user_id: ''}})
+ }
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -60,17 +63,19 @@ class AddProfileForm extends Component {
   };
   render() {
     return (
+      
       <div className="add-user-form">
-            
-         <input onChange={this.handleChange} value={this.state.name} type="text" name="first_name" placeholder="First Name" />
-         <input onChange={this.handleChange} value={this.state.username} type="text" name="last_name" placeholder="Last Name" />
+          {console.log("State", this.state)}
+      {console.log("Props", this.props)}  
+         <input onChange={this.handleChange} value={this.state.first_name} type="text" name="first_name" placeholder="First Name" />
+         <input onChange={this.handleChange} value={this.state.last_name} type="text" name="last_name" placeholder="Last Name" />
          <input onChange={this.handleChange} value={this.state.age} type="number" name="age" placeholder="Age" />
-         <input onChange={this.handleChange} value={this.state.title} type="text" name="certs" placeholder="Certs" />
-         <input onChange={this.handleChange} value={this.state.tagline} type="text" name="profile_text" placeholder="Description" />
-         <input onChange={this.handleChange} value={this.state.experience} type="number" name="years_of_exp" placeholder="# of years experience" />
+         <input onChange={this.handleChange} value={this.state.certs} type="text" name="certs" placeholder="Certs" />
+         <input onChange={this.handleChange} value={this.state.profile_text} type="text" name="profile_text" placeholder="Description" />
+         <input onChange={this.handleChange} value={this.state.years_of_exp} type="number" name="years_of_exp" placeholder="# of years experience" />
          <input type="hidden" value={this.state.user_id} name="user_id" />
          
-         <button  onChange={this.handleChange}  onClick={this.onClick}>Create Profile</button>
+         <button  onChange={this.handleChange}  onClick={this.handleClick}>Create Profile</button>
          
        
       </div>

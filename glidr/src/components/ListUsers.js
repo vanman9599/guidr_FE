@@ -14,7 +14,7 @@ class ListUsers extends React.Component {
        this.props.getUsers();
    }
    render() {
-       console.log("Users on state", this.props);
+       console.log("Users on props", this.props);
        return this.props.users.map(user =>
            <div>
                <div>{user.username}</div>

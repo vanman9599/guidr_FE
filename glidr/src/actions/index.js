@@ -46,7 +46,7 @@ export const login = creds => dispatch => {
     return axiosWithAuth()
     .post("https://ls-guidr.herokuapp.com/api/auth/login", creds)
     .then(res => {
-      console.log("Token", res.data)
+      console.log("Res Data", res.data)
         localStorage.setItem('token', res.data.token);
         dispatch({ type: LOGIN_SUCCESS, users: res.data});
     })
@@ -118,14 +118,14 @@ export const getUsers = () => dispatch => {
       .put(`https://ls-guidr.herokuapp.com/api/profile/${profile.user_id}`, profile)
       .then(res => {
         console.log("Res Data", res.data);
-        console.log("userID", profile.user_id)
+        console.log("userID", res.data.id)
         dispatch({
           type: ADD_PROFILE_SUCCESS,
           profile: res.data
         });
       })
       .catch(err => {
-        console.log(profile.user_id)
+        console.log("Profile UserID", )
         dispatch({
           type: ADD_PROFILE_ERROR, 
           error: err.response

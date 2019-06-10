@@ -38,7 +38,8 @@ const initialState = {
     addingUser: false,
     updatingUser: false,
     deletingUser: false,
-    error: null
+    error: null, 
+    id: null
   }
  
  
@@ -103,6 +104,7 @@ const initialState = {
           error: '', 
           updatingUser: true, 
           profile: [...state.profile, action.profile]
+          
         }
         case ADD_PROFILE_ERROR:
           return{

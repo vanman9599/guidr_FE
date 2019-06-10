@@ -21,7 +21,7 @@ class Login extends Component {
 
   
 
-  onClick = e => {
+  hanldeClick = e => {
     e.preventDefault();
     const user = {  
                         username: this.state.username, 
@@ -47,7 +47,7 @@ class Login extends Component {
          <input onChange={this.handleChange} value={this.state.username} type="text" name="username" placeholder="Username" />
          <input onChange={this.handleChange} value={this.state.password} type="password" name="password" placeholder="Password" />
         
-         <button  onChange={this.handleChange}  onClick={this.onClick}>Login</button>
+         <button  onChange={this.handleChange}  onClick={this.handleClick}>Login</button>
          
        
       </div>
