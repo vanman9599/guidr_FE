@@ -6,6 +6,7 @@ import AddTripForm from  './AddTripForm';
 import Register from './Register'; 
 import Login from './Login';
 import ShowProfile from './ShowProfile';
+import ListTrips from './ListTrips';
   
 import  PrivateRoute  from '../PrivateRoute';
 import AddProfileForm from './AddProfileForm';
@@ -47,7 +48,8 @@ class App extends Component {
         {console.log("users: ", this.props.users)}
         <PrivateRoute path='/list-users'  component={ListUsers} />
         <PrivateRoute path='/edit-profile/:id' component={AddProfileForm} />
-        <PrivateRoute path='/add-trip' component={AddTripForm} />
+        <PrivateRoute path='/add-trip/:user_id' component={AddTripForm} />
+        <PrivateRoute path='/list-trips/:user_id' component={ListTrips} />
         <PrivateRoute path='/show-profile' component={ShowProfile} />
          <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />

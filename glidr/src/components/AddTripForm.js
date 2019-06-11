@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from "react-redux";
+import axios from 'axios';
 // import { Button } from "reactstrap";
 
 
@@ -15,15 +16,19 @@ class AddTripForm extends Component {
 
   state = 
   {
-    user_id: '', // REQUIRED
-    adventure_type: '',
-    date: '',
-    description: '',
-    duration: '',
-    location: '',
-    professional: '',
-    title: ''
+    trip: {
+      user_id: '', // REQUIRED
+      adventure_type: '',
+      date: '',
+      description: '',
+      duration: '',
+      location: '',
+      professional: '',
+      title: ''
   }
+}
+
+
  addTrip = e => {
     e.preventDefault();
     const newTrip = { user_id: this.state.user_id, 
@@ -36,7 +41,9 @@ class AddTripForm extends Component {
                     title: this.state.title
                     }
     this.props.addTrip(newTrip)
-    this.setState({user_id: '', adventure_type: '', descrption: '', duration: '', location:'', professional:'', title: ''})
+    console.log("Add Trip Form: State", this.state);
+    console.log("Add Trip Form: Props", this.props);
+    this.setState({trip: {user_id: '', adventure_type: '', descrption: '', duration: '', location:'', professional:'', title: ''}})
   }
 
   handleChange = e => {
@@ -56,10 +63,10 @@ class AddTripForm extends Component {
          <input onChange={this.handleChange} value={this.state.location} type="text" name="location" placeholder="Location" />
          <input onChange={this.handleChange} value={this.state.title} type="text" name="title" placeholder="Title" /> 
          <input type="hidden" name="user_id" value={this.state.user_id} />
-         <input type="radio" name="professional" value="true" selected />Proressional
-         <input type="radio" name="professional" value="false" />Private
+         <input type="radio" name="professional" value="1" selected />Proressional
+         <input type="radio" name="professional" value="0" />Private
          
-         <button  onChange={this.handleChange}  onClick={this.onClick}>Add Trip</button>
+         <button  onChange={this.handleChange}  onClick={this.addTrip}>Add Trip</button>
          
        
       </div>

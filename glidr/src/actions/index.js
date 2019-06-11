@@ -1,9 +1,9 @@
 import axios from 'axios';
 import axiosWithAuth from '../axiosWithAuth';
 //FETCH, ADD, EDIT, UPDATE A SINGLE USER
-export const FETCH_USER_START = "FETCH_USER_START";
-export const FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS";
-export const FETCH_USER_ERROR = "FETCH_USER_ERROR";
+export const FETCH_PROFILE_START = "FETCH_PROFILE_START";
+export const FETCH_PROFILE_SUCCESS = "FETCH_PROFILE_SUCCESS";
+export const FETCH_PROFILE_ERROR = "FETCH_PROFILE_ERROR";
 export const ADD_USER_START= "ADD_USER";
 export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
 export const ADD_USER_ERROR = "ADD_USER_ERROR";
@@ -24,9 +24,9 @@ export const FETCH_USERS_START = "FETCH_USERS_START";
 export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
 export const FETCH_USERS_ERROR = "FETCH_USERS_ERROR";
 
-export const FETCH_TRIP_START = "FETCH_TRIP_START";
-export const FETCH_TRIP_SUCCESS = "FETCH_TRIP_SUCCESS";
-export const FETCH_TRIP_ERROR = "FETCH_TRIP_ERROR";
+export const FETCH_TRIPS_START = "FETCH_TRIPS_START";
+export const FETCH_TRIPS_SUCCESS = "FETCH_TRIPS_SUCCESS";
+export const FETCH_TRIPS_ERROR = "FETCH_TRIPS_ERROR";
 export const ADD_TRIP_START = "ADD_TRIP";
 export const ADD_TRIP_SUCCESS = "ADD_tRIP_SUCCESS";
 export const ADD_TRIP_ERROR = "ADD_TRIP_ERROR";
@@ -136,15 +136,74 @@ export const getUsers = () => dispatch => {
     }
   
 
-  export const addTrip = (trip) => {
-
+  export const addTrip = (trip) => dispatch => {
+    dispatch({
+        type: ADD_TRIP_START
+      });
+    return axiosWithAuth()
+      .post("https://ls-guidr.herokuapp.com/api/trips", trip)
+      .then(res => {
+        console.log("Res Data", res.data);
+        dispatch({
+          type: ADD_TRIP_SUCCESS,
+          trip: trip
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: ADD_TRIP_ERROR, 
+          trip: err.response
+        });
+      });
+    
   }
 
   export const editProfile = (profile) => {
 
   }
 
-  export const getProfile = () => {
-
+  export const getProfile = (id) => dispatch => {
+    dispatch({
+      type: FETCH_PROFILE_START
+    });
+    axiosWithAuth()
+    .get(`https://ls-guidr.herokuapp.com/api/profile/${id}`)
+    .then(res => {
+      console.log("Res Data", res.data);
+      console.log("userID", res.data.id)
+      dispatch({
+        type: FETCH_PROFILE_SUCCESS,
+        profile: res.data
+      });
+    })
+    .catch(err => {
+      
+      dispatch({
+        type: FETCH_PROFILE_ERROR, 
+        error: err.response
+      });
+    });
   }
   
+  export const getTrips = (id) => dispatch => {
+    
+    dispatch({
+      type: FETCH_TRIPS_START
+    });
+    return axiosWithAuth()
+    .get(`https://ls-guidr.herokuapp.com/api/trips/${id}`)
+    .then(res => {
+      console.log(" Data", res.data);
+      dispatch({
+        type: FETCH_TRIPS_SUCCESS,
+        trips: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: FETCH_TRIPS_ERROR, 
+        error: err.response
+      });
+    });
+  
+}

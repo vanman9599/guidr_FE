@@ -18,9 +18,9 @@ FETCH_USERS_START,
 FETCH_USERS_SUCCESS,
 FETCH_USERS_ERROR,
 
-FETCH_TRIP_START,
-FETCH_TRIP_SUCCESS,
-FETCH_TRIP_ERROR,
+FETCH_TRIPS_START,
+FETCH_TRIPS_SUCCESS,
+FETCH_TRIPS_ERROR,
 ADD_TRIP_START,
 ADD_TRIP_SUCCESS,
 ADD_TRIP_ERROR,
@@ -113,6 +113,47 @@ const initialState = {
             updatingUser: false, 
 
           }
+            case ADD_TRIP_START:
+              return{
+              ...state, 
+              error: "", 
+              
+            }
+            case ADD_TRIP_SUCCESS:
+              return{
+              ...state, 
+              error: '', 
+              trip: [...state.trip, action.trip]
+
+            }
+            case ADD_TRIP_ERROR:
+              return{
+              ...state, 
+              error: 'Error updating profile' 
+
+            }
+
+            case FETCH_TRIPS_START:
+                return{
+                ...state, 
+                error: "", 
+                
+              }
+              case FETCH_TRIPS_SUCCESS:
+                return{
+                ...state, 
+                error: '', 
+                trip: [...state.trip, action.trip]
+  
+              }
+              case FETCH_TRIPS_ERROR:
+                return{
+                ...state, 
+                error: 'Error updating profile' 
+  
+              }
+          
+          
      default: 
      return state 
    }
