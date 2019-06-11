@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route, NavLink, withRouter } from 'react-route
 import AddTripForm from  './AddTripForm';
 import Register from './Register'; 
 import Login from './Login';
-import { create_UUID } from '../utils';
+import ShowProfile from './ShowProfile';
+  
 import  PrivateRoute  from '../PrivateRoute';
 import AddProfileForm from './AddProfileForm';
 
@@ -47,6 +48,7 @@ class App extends Component {
         <PrivateRoute path='/list-users'  component={ListUsers} />
         <PrivateRoute path='/edit-profile/:id' component={AddProfileForm} />
         <PrivateRoute path='/add-trip' component={AddTripForm} />
+        <PrivateRoute path='/show-profile' component={ShowProfile} />
          <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
         

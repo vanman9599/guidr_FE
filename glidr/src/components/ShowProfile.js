@@ -1,5 +1,5 @@
 import React from "react";
-import { getUsers } from '../actions';
+import { getProfile } from '../actions';
 import { connect } from 'react-redux';
 
 class ShowProfile extends React.Component {
@@ -13,7 +13,7 @@ class ShowProfile extends React.Component {
                certs: '', 
                profile_text: '', 
                years_of_exp: '', 
-               user_id: '';
+               user_id: ''
            }
        }
    }
@@ -25,8 +25,8 @@ class ShowProfile extends React.Component {
        console.log("Users on props", this.props);
        return (
            <div>
-               <div>{user.username}</div>
-               <div>UserId: {user.id}</div>
+               <div>{this.props.first_name}</div>
+               <div>UserId: {this.props.user_id}</div>
            </div>
        )
    }
@@ -36,9 +36,9 @@ class ShowProfile extends React.Component {
 
 const mapStateToProps = state => {
    return{
-     users: state.users
+     profile: state.profile
    }
  }
  export default connect(
    mapStateToProps,
-   { getUsers })(ShowProfile);
+   { getProfile })(ShowProfile);

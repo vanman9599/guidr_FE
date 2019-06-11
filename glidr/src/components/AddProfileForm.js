@@ -42,12 +42,23 @@ class AddProfileForm extends Component {
    const { match: { params }} = this.props;
     axios
     .get(`https://ls-guidr.herokuapp.com/api/profile/${params.id}`)
-    .then(
+    .then(res => {
+      console.log("Res Data", res)
       this.setState({
-        user_id: params.id
+        profile: {
+            user_id: res.id,
+            first_name: res.first_name,
+            last_name: res.last_name, 
+            age: res.age,
+            certs: res.certs,
+            profile_text: res.profile_text,
+            years_of_exp: res.years_of_exp
+        }
+        
       }) 
-    )
-    .catch(err => {
+      
+    })
+     .catch(err => {
       console.log(err);
     })
  }
@@ -78,6 +89,7 @@ class AddProfileForm extends Component {
       <div className="add-user-form">
           {console.log("State", this.state)}
       {console.log("Props", this.props)}  
+      
          <input onChange={this.handleChange} value={this.state.first_name} type="text" name="first_name" placeholder="First Name" />
          <input onChange={this.handleChange} value={this.state.last_name} type="text" name="last_name" placeholder="Last Name" />
          <input onChange={this.handleChange} value={this.state.age} type="number" name="age" placeholder="Age" />

@@ -144,4 +144,7 @@ export const getUsers = () => dispatch => {
 
   }
 
+  export const getProfile = () => {
+
+  }
   
