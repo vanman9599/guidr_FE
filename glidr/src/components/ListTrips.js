@@ -1,24 +1,26 @@
 import React from "react";
 import Link from 'react-dom';
-import { getUsers } from '../actions';
+import { getTrips } from '../actions';
 import { connect } from 'react-redux';
 
+
 class ListTrips extends React.Component {
-   constructor() {
-       super();
+   constructor(props) {
+       super(props);
        this.state = {
            trips: []
        }
    }
 
    componentDidMount() {
-    const { match: { params } } = this.props;
-       this.props.getTrips(params.user_id);
+   
+       this.props.getTrips();
    }
 
    
    render() {
        console.log("Trips on props", this.props);
+       console.log("Trips on state", this.state)
        return(
          <div>
             {this.props.trips.map(trip => {
@@ -42,4 +44,4 @@ const mapStateToProps = state => {
  }
  export default connect(
    mapStateToProps,
-   { getUsers })(ListTrips);
+   { getTrips })(ListTrips);

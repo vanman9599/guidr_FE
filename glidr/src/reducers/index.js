@@ -103,7 +103,7 @@ const initialState = {
           ...state, 
           error: '', 
           updatingUser: true, 
-          profile: [...state.profile, action.profile]
+          profile: action.profile
           
         }
         case ADD_PROFILE_ERROR:
@@ -123,7 +123,7 @@ const initialState = {
               return{
               ...state, 
               error: '', 
-              trip: [...state.trip, action.trip]
+              trip: action.trip
 
             }
             case ADD_TRIP_ERROR:
@@ -143,7 +143,7 @@ const initialState = {
                 return{
                 ...state, 
                 error: '', 
-                trip: [...state.trip, action.trip]
+                trips: [...state.trips, action.trips]
   
               }
               case FETCH_TRIPS_ERROR:

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from "react-redux";
-import axios from 'axios';
+
 // import { Button } from "reactstrap";
 
 
@@ -31,7 +31,7 @@ class AddTripForm extends Component {
 
  addTrip = e => {
     e.preventDefault();
-    const newTrip = { user_id: this.state.user_id, 
+    const newTrip = { user_id: localStorage.getItem("user_id"), 
                       adventure_type: this.state.adventure_type, 
                      date: this.state.date, 
                      description: this.state.description, 
@@ -41,6 +41,10 @@ class AddTripForm extends Component {
                     title: this.state.title
                     }
     this.props.addTrip(newTrip)
+    .then(() => {
+      this.props.history.push('/list-trips')
+    })
+    .catch(err => console.log(err));
     console.log("Add Trip Form: State", this.state);
     console.log("Add Trip Form: Props", this.props);
     this.setState({trip: {user_id: '', adventure_type: '', descrption: '', duration: '', location:'', professional:'', title: ''}})
@@ -58,11 +62,10 @@ class AddTripForm extends Component {
             
          <input onChange={this.handleChange} value={this.state.adventure_type} type="text" name="adventure_type" placeholder="Name" />
          <input onChange={this.handleChange} value={this.state.date} type="text" name="date" placeholder="MM/DD/YYYY" />
-         <input onChange={this.handleChange} value={this.state.description} type="text" name="description" placeholder="Age" />
-         <input onChange={this.handleChange} value={this.state.duration} type="text" name="duration" placeholder="Title" />
+         <input onChange={this.handleChange} value={this.state.description} type="text" name="description" placeholder="Description" />
+         <input onChange={this.handleChange} value={this.state.duration} type="number" name="duration" placeholder="Duration" />
          <input onChange={this.handleChange} value={this.state.location} type="text" name="location" placeholder="Location" />
          <input onChange={this.handleChange} value={this.state.title} type="text" name="title" placeholder="Title" /> 
-         <input type="hidden" name="user_id" value={this.state.user_id} />
          <input type="radio" name="professional" value="1" selected />Proressional
          <input type="radio" name="professional" value="0" />Private
          
@@ -76,7 +79,8 @@ class AddTripForm extends Component {
 }
 const mapStateToProps = state => {
   return{
-        user_id: state.user_id, 
+        trip: {
+          user_id: localStorage.getItem("user_id"), 
         adventure_type: state.adventure_type, 
         date: state.date, 
         description: state.description, 
@@ -85,6 +89,7 @@ const mapStateToProps = state => {
         professional: state.date, 
         title: state.title
         }
+    }
 }
 export default connect(
   mapStateToProps,

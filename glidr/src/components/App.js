@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import './App.css';
 import ListUsers from './ListUsers';
-import { BrowserRouter as Router, Route, NavLink, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import AddTripForm from  './AddTripForm';
 import Register from './Register'; 
 import Login from './Login';
 import ShowProfile from './ShowProfile';
 import ListTrips from './ListTrips';
-  
 import  PrivateRoute  from '../PrivateRoute';
 import AddProfileForm from './AddProfileForm';
 
 
 
 import { connect } from "react-redux";
-// import { Button } from "reactstrap";
 import { getUsers, addUser , editProfile} from "../actions";
 /*
  to wire this component up you're going to need a few things.
@@ -25,31 +24,68 @@ import { getUsers, addUser , editProfile} from "../actions";
 class App extends Component {
  constructor(props){
   super(props);
+  this.toggleNavbar = this.toggleNavbar.bind(this);
   this.state = {
-    users: []
+    users: [], 
+    collapsed: true
   }
  };
  
+toggleNavbar(){
+  this.setState({
+    collapsed: !this.state.collapsed
+  });
+}
 
  componentDidMount(){
    this.props.getUsers();
  }
+
   render() {
     return (
       <div className="App">
-        <div className="nav-links">
-          <NavLink to='/register'>Sign-up</NavLink>
+        <Navbar color="faded" light>
+          <NavbarBrand href="/" className="mr-auto">Guidr</NavbarBrand>
+          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+          <Collapse isOpen={!this.state.collapsed} navbar>
+              <Nav navbar>
+                  <NavItem>
+                      <NavLink href='/register'>Sign-up</NavLink>
+                  </NavItem>
+                  <NavItem>
+                  <NavLink href="/login">Login</NavLink>
+                  </NavItem>
+                  <NavItem>
+                  <NavLink href="/list-users">List Guides</NavLink>
+                  </NavItem>
+                  <NavItem>
+                  <NavLink href="/edit-profile">Edit Profile</NavLink>
+                  </NavItem>
+                  <NavItem>
+                  <NavLink href="/add-trip">Add Trip</NavLink>
+                  </NavItem>
+                  <NavItem>
+                  <NavLink href="/list-trips">List Trips</NavLink>
+                  </NavItem>
+              </Nav>
+            </Collapse>
+          </Navbar>
+        
+                  
+        {/* <div className="nav-links">
+          
           <NavLink exact to="/">Home</NavLink>
           <NavLink to="/list-users">List Guides</NavLink>
           <NavLink to='/register'>Sign-up</NavLink>/<NavLink exact to="/login">Login</NavLink>
           <NavLink to="/edit-profile">Edit Profile</NavLink>
           <NavLink to="/add-trip">Add Trip</NavLink>
-        </div>
+          <NavLink to="/list-trips">List Trips</NavLink>
+        </div> */}
         {console.log("users: ", this.props.users)}
         <PrivateRoute path='/list-users'  component={ListUsers} />
-        <PrivateRoute path='/edit-profile/:id' component={AddProfileForm} />
-        <PrivateRoute path='/add-trip/:user_id' component={AddTripForm} />
-        <PrivateRoute path='/list-trips/:user_id' component={ListTrips} />
+        <PrivateRoute path='/edit-profile' component={AddProfileForm} />
+        <PrivateRoute path='/add-trip' component={AddTripForm} />
+        <PrivateRoute path='/list-trips' component={ListTrips} />
         <PrivateRoute path='/show-profile' component={ShowProfile} />
          <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />

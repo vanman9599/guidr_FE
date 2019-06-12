@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from "react-redux";
-import axios from 'axios';
+
 // import { Button } from "reactstrap";
 
 
@@ -38,34 +38,12 @@ class AddProfileForm extends Component {
 }
 
   */
- componentDidMount(){
-   const { match: { params }} = this.props;
-    axios
-    .get(`https://ls-guidr.herokuapp.com/api/profile/${params.id}`)
-    .then(res => {
-      console.log("Res Data", res)
-      this.setState({
-        profile: {
-            user_id: res.id,
-            first_name: res.first_name,
-            last_name: res.last_name, 
-            age: res.age,
-            certs: res.certs,
-            profile_text: res.profile_text,
-            years_of_exp: res.years_of_exp
-        }
-        
-      }) 
-      
-    })
-     .catch(err => {
-      console.log(err);
-    })
- }
+ 
 
   handleClick = e => {
     e.preventDefault();
-        const newProfile = { user_id: this.state.user_id,
+        const newProfile = 
+        {   user_id: localStorage.getItem("user_id"),
             first_name: this.state.first_name, 
             last_name: this.state.last_name, 
             age: this.state.age, 
@@ -73,7 +51,9 @@ class AddProfileForm extends Component {
             profile_text: this.state.profile_text, 
             years_of_exp: this.years_of_exp
            }
-    this.props.addProfile(newProfile);
+    this.props.addProfile(newProfile).then(() => {
+      this.props.history.push('/show-profile');
+    });
     this.setState({newProfile: {first_name: '', last_name: '', age: '', certs: '', profile_text:'', years_of_exp: '' , user_id: ''}})
  }
 
@@ -96,7 +76,7 @@ class AddProfileForm extends Component {
          <input onChange={this.handleChange} value={this.state.certs} type="text" name="certs" placeholder="Certs" />
          <input onChange={this.handleChange} value={this.state.profile_text} type="text" name="profile_text" placeholder="Description" />
          <input onChange={this.handleChange} value={this.state.years_of_exp} type="number" name="years_of_exp" placeholder="# of years experience" />
-         <input type="hidden" value={this.state.user_id} name="user_id" />
+        
          
          <button  onChange={this.handleChange}  onClick={this.handleClick}>Create Profile</button>
          

@@ -110,26 +110,25 @@ export const getUsers = () => dispatch => {
       }
   }
   
-  export const addProfile = profile => dispatch => {
+  export const addProfile = profile  => dispatch => {
     // dispatch({type: action-type})
     // axios call
     console.log("Profile", profile);
       dispatch({
         type: ADD_PROFILE_START
       });
-      axiosWithAuth()
-      .put(`https://ls-guidr.herokuapp.com/api/profile/${profile.user_id}`, profile)
+      return axiosWithAuth()
+      .put(`https://ls-guidr.herokuapp.com/api/profile/${localStorage.getItem("user_id")}`, profile)
       .then(res => {
         console.log("Res Data", res.data);
         console.log("userID", res.data.id)
         dispatch({
           type: ADD_PROFILE_SUCCESS,
           profile: res.data
-        });
+        })
       })
       .catch(err => {
-        console.log("Profile UserID", )
-        dispatch({
+         dispatch({
           type: ADD_PROFILE_ERROR, 
           error: err.response
         });
@@ -147,13 +146,13 @@ export const getUsers = () => dispatch => {
         console.log("Res Data", res.data);
         dispatch({
           type: ADD_TRIP_SUCCESS,
-          trip: trip
+          trip: res.data
         });
       })
       .catch(err => {
         dispatch({
           type: ADD_TRIP_ERROR, 
-          trip: err.response
+          error: err.response
         });
       });
     
@@ -163,12 +162,12 @@ export const getUsers = () => dispatch => {
 
   }
 
-  export const getProfile = (id) => dispatch => {
+  export const getProfile = () => dispatch => {
     dispatch({
       type: FETCH_PROFILE_START
     });
     axiosWithAuth()
-    .get(`https://ls-guidr.herokuapp.com/api/profile/${id}`)
+    .get(`https://ls-guidr.herokuapp.com/api/profile/${localStorage.getItem("user_id")}`)
     .then(res => {
       console.log("Res Data", res.data);
       console.log("userID", res.data.id)
@@ -186,15 +185,15 @@ export const getUsers = () => dispatch => {
     });
   }
   
-  export const getTrips = (id) => dispatch => {
+  export const getTrips = () => dispatch => {
     
     dispatch({
       type: FETCH_TRIPS_START
     });
     return axiosWithAuth()
-    .get(`https://ls-guidr.herokuapp.com/api/trips/${id}`)
+    .get(`https://ls-guidr.herokuapp.com/api/trips/${localStorage.getItem("user_id")}`)
     .then(res => {
-      console.log(" Data", res.data);
+      console.log("Trips Data", res.data);
       dispatch({
         type: FETCH_TRIPS_SUCCESS,
         trips: res.data
