@@ -19,13 +19,17 @@ class ListTrips extends React.Component {
    
    render() {
        console.log("Trips on props", this.props);
-       return this.props.trips.map(user =>
-           <div>
-               
-            
-               
-           </div>
-       )
+       return(
+         <div>
+            {this.props.trips.map(trip => {
+                return(
+                    <div>
+                        {trip.title}
+                    </div>
+                )
+            })}
+         </div>
+       ) 
    }
 
 

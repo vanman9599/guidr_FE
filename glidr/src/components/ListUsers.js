@@ -18,13 +18,18 @@ class ListUsers extends React.Component {
    
    render() {
        console.log("Users on props", this.props);
-       return this.props.users.map(user =>
-           <div>
+       return(
+            <div>
+         {this.props.users.map(user => {
+           return(<div>
                
-            <div>{user.username} <Link to={`/add-trip/${user.id}`}>View Trips</Link></div>
+            <div>{user.username}</div>
                
-           </div>
-       )
+           </div>)
+      } )}
+            </div>
+       ) 
+       
    }
 
 

@@ -48,6 +48,7 @@ export const login = creds => dispatch => {
     .then(res => {
       console.log("Res Data", res.data)
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('user_id', res.data.id);
         dispatch({ type: LOGIN_SUCCESS, users: res.data});
     })
     .catch(err => console.log(err));
