@@ -51,9 +51,11 @@ class AddProfileForm extends Component {
             profile_text: this.state.profile_text, 
             years_of_exp: this.years_of_exp
            }
-    this.props.addProfile(newProfile).then(() => {
+    this.props.addProfile(newProfile)
+    .then(() => {
       this.props.history.push('/show-profile');
-    });
+    })
+    .catch(err => console.log(err));
     this.setState({newProfile: {first_name: '', last_name: '', age: '', certs: '', profile_text:'', years_of_exp: '' , user_id: ''}})
  }
 

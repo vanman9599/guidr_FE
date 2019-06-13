@@ -84,7 +84,7 @@ const initialState = {
            ...state, 
            error: '', 
            addingUser: false, 
-           users: [...state.users, action.users]
+           user: action.user
          }
      case ADD_USER_ERROR:
        return{

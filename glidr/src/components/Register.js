@@ -28,7 +28,7 @@ class Register extends Component {
                      password: this.state.password
                     }
      this.props.addUser(newUser).then(() => {
-        this.props.history.push('/list-users');
+        this.props.history.push('/login');
     
     this.setState({username: '', password: ''});
   })
