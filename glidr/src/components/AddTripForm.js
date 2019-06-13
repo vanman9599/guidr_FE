@@ -42,12 +42,13 @@ class AddTripForm extends Component {
                     }
     this.props.addTrip(newTrip)
     .then(() => {
-      this.props.history.push('/list-trips')
+      console.log("props", this.props);
+      this.props.history.push('/list-trips');
     })
     .catch(err => console.log(err));
     console.log("Add Trip Form: State", this.state);
     console.log("Add Trip Form: Props", this.props);
-    this.setState({trip: {user_id: '', adventure_type: '', descrption: '', duration: '', location:'', professional:'', title: ''}})
+    this.setState({user_id: '', adventure_type: '', description: '', duration: '', location:'', professional:'', title: '', date: ''})
   }
 
   handleChange = e => {

@@ -8,13 +8,14 @@ class ListTrips extends React.Component {
    constructor(props) {
        super(props);
        this.state = {
-           trips: []
+           trips: this.props.trips
        }
    }
 
    componentDidMount() {
    
-       this.props.getTrips();
+     this.props.getTrips();
+    
    }
 
    

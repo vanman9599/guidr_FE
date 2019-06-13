@@ -39,6 +39,8 @@ toggleNavbar(){
 
  componentDidMount(){
    this.props.getUsers();
+   console.log("App props:", this.props);
+
  }
 
   render() {
@@ -84,7 +86,7 @@ toggleNavbar(){
         {console.log("users: ", this.props.users)}
         <PrivateRoute path='/list-users'  component={ListUsers} />
         <PrivateRoute path='/edit-profile' component={AddProfileForm} />
-        <PrivateRoute path='/add-trip' component={AddTripForm} />
+        <PrivateRoute path='/add-trip' component={AddTripForm}  />
         <PrivateRoute path='/list-trips' component={ListTrips} />
         <PrivateRoute path='/show-profile' component={ShowProfile} />
          <Route path='/register' component={Register} />

@@ -39,7 +39,8 @@ const initialState = {
     updatingUser: false,
     deletingUser: false,
     error: null, 
-    id: null
+    id: null, 
+    trips: []
   }
  
  
@@ -143,7 +144,7 @@ const initialState = {
                 return{
                 ...state, 
                 error: '', 
-                trips: [...state.trips, action.trips]
+                trips: action.trips
   
               }
               case FETCH_TRIPS_ERROR:

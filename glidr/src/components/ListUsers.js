@@ -4,8 +4,8 @@ import { getUsers } from '../actions';
 import { connect } from 'react-redux';
 
 class ListUsers extends React.Component {
-   constructor() {
-       super();
+   constructor(props) {
+       super(props);
        this.state = {
            users: []
        }

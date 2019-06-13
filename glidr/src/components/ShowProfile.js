@@ -52,13 +52,13 @@ class ShowProfile extends React.Component {
 const mapStateToProps = state => {
    return{
     profile: {
-        first_name: this.state.first_name, 
-        last_name: this.state.last_name, 
-        age: this.state.age, 
-        certs: this.state.certs, 
-        profile_text: this.state.profile_text, 
-        years_of_exp: this.state.years_of_exp, 
-        user_id: localStorage.getItem("user_id")
+        first_name: state.first_name, 
+        last_name: state.last_name, 
+        age: state.age, 
+        certs: state.certs, 
+        profile_text: state.profile_text, 
+        years_of_exp: state.years_of_exp, 
+        user_id: state.user_id
    }
  }
 }

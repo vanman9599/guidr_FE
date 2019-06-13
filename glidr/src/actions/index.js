@@ -88,13 +88,13 @@ export const getUsers = () => dispatch => {
         console.log("Res Data", res.data);
         dispatch({
           type: ADD_USER_SUCCESS,
-          users: res.data
+          payload: res.data
         });
       })
       .catch(err => {
         dispatch({
           type: ADD_USER_ERROR, 
-          users: err.response
+          error: err.response
         });
       });
     }
@@ -118,7 +118,7 @@ export const getUsers = () => dispatch => {
         type: ADD_PROFILE_START
       });
       return axiosWithAuth()
-      .put(`https://ls-guidr.herokuapp.com/api/profile/${localStorage.getItem("user_id")}`, profile)
+      .post("https://ls-guidr.herokuapp.com/api/profile", profile)
       .then(res => {
         console.log("Res Data", res.data);
         console.log("userID", res.data.id)
@@ -200,6 +200,7 @@ export const getUsers = () => dispatch => {
       });
     })
     .catch(err => {
+      console.log(err);
       dispatch({
         type: FETCH_TRIPS_ERROR, 
         error: err.response

@@ -38,6 +38,11 @@ class AddProfileForm extends Component {
 }
 
   */
+ componentDidMount(){
+   this.setState({
+
+   })
+ }
  
 
   handleClick = e => {
@@ -56,7 +61,7 @@ class AddProfileForm extends Component {
       this.props.history.push('/show-profile');
     })
     .catch(err => console.log(err));
-    this.setState({newProfile: {first_name: '', last_name: '', age: '', certs: '', profile_text:'', years_of_exp: '' , user_id: ''}})
+    this.setState({first_name: '', last_name: '', age: '', certs: '', profile_text:'', years_of_exp: '' , user_id: ''})
  }
 
   handleChange = e => {
