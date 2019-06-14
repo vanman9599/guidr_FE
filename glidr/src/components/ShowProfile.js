@@ -6,7 +6,7 @@ class ShowProfile extends React.Component {
    constructor() {
        super();
        this.state = {
-           profile: {
+           
             first_name: '', 
             last_name: '', 
             age: '', 
@@ -14,7 +14,7 @@ class ShowProfile extends React.Component {
             profile_text: '', 
             years_of_exp: '', 
             user_id: ''
-           }
+           
                
            
        }
@@ -24,7 +24,7 @@ class ShowProfile extends React.Component {
        this.props.getProfile();
        console.log("Props on ShowProfile", this.props);
        this.setState({
-           profile: {
+           
             first_name: this.state.first_name, 
             last_name: this.state.last_name, 
             age: this.state.age, 
@@ -32,14 +32,14 @@ class ShowProfile extends React.Component {
             profile_text: this.state.profile_text, 
             years_of_exp: this.state.years_of_exp, 
             user_id: localStorage.getItem("user_id")
-           }
-      
+              
        })
    }
    render() {
        
        return (
            <div>
+               {console.log("Props on SHowProfile", this.props)}
                <div>{this.props.first_name}</div>
                <div>UserId: {this.props.user_id}</div>
            </div>
@@ -51,7 +51,7 @@ class ShowProfile extends React.Component {
 
 const mapStateToProps = state => {
    return{
-    profile: {
+    
         first_name: state.first_name, 
         last_name: state.last_name, 
         age: state.age, 
@@ -59,7 +59,7 @@ const mapStateToProps = state => {
         profile_text: state.profile_text, 
         years_of_exp: state.years_of_exp, 
         user_id: state.user_id
-   }
+   
  }
 }
  export default connect(

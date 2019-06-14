@@ -9,6 +9,9 @@ ADD_USER_ERROR,
 ADD_PROFILE_START,
 ADD_PROFILE_SUCCESS,
 ADD_PROFILE_ERROR,
+FETCH_PROFILE_START,
+FETCH_PROFILE_SUCCESS, 
+FETCH_PROFILE_ERROR,
 DELETE_USER_START,
 DELETE_USER_SUCCESS,
 DELETE_USER_ERROR,
@@ -40,7 +43,10 @@ const initialState = {
     deletingUser: false,
     error: null, 
     id: null, 
-    trips: []
+    trips: [], 
+    trip: null, 
+    profile: null, 
+    user: null
   }
  
  
@@ -114,6 +120,25 @@ const initialState = {
             updatingUser: false, 
 
           }
+
+          case FETCH_PROFILE_START:
+            return{
+              ...state, 
+              error: ""
+            }
+            case FETCH_PROFILE_SUCCESS:
+             return{
+               ...state, 
+               error: '', 
+               profile: action.profile
+               
+             }
+             case FETCH_PROFILE_ERROR:
+               return{
+                 ...state, 
+                 error: 'Error updating profile' 
+     
+               }
             case ADD_TRIP_START:
               return{
               ...state, 

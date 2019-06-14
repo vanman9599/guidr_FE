@@ -60,14 +60,14 @@ class AddTripForm extends Component {
   render() {
     return (
       <div className="add-user-form">
-            
-         <input onChange={this.handleChange} value={this.state.adventure_type} type="text" name="adventure_type" placeholder="Name" />
+      <h1>Add Trip</h1>
+        <input onChange={this.handleChange} value={this.state.title} type="text" name="title" placeholder="Title" /> 
+        <input onChange={this.handleChange} value={this.state.adventure_type} type="text" name="adventure_type" placeholder="Adventure Type" />
          <input onChange={this.handleChange} value={this.state.date} type="text" name="date" placeholder="MM/DD/YYYY" />
          <input onChange={this.handleChange} value={this.state.description} type="text" name="description" placeholder="Description" />
          <input onChange={this.handleChange} value={this.state.duration} type="number" name="duration" placeholder="Duration" />
          <input onChange={this.handleChange} value={this.state.location} type="text" name="location" placeholder="Location" />
-         <input onChange={this.handleChange} value={this.state.title} type="text" name="title" placeholder="Title" /> 
-         <input type="radio" name="professional" value="1" selected />Proressional
+          <input type="radio" name="professional" value="1" selected />Proressional
          <input type="radio" name="professional" value="0" />Private
          
          <button  onChange={this.handleChange}  onClick={this.addTrip}>Add Trip</button>

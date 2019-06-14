@@ -16,7 +16,7 @@ export const DELETE_USER_ERROR = "DELETE_USER_ERROR";
 
 export const ADD_PROFILE_START = "ADD_PROFILE_START";
 export const ADD_PROFILE_SUCCESS = "ADD_PROFILE_SUCCESS";
-export const ADD_PROFILE_ERROR = "ADD_PROFILE_ERROR"
+export const ADD_PROFILE_ERROR = "ADD_PROFILE_ERROR";
 
 
 //LIST ALL USERS
@@ -166,11 +166,11 @@ export const getUsers = () => dispatch => {
     dispatch({
       type: FETCH_PROFILE_START
     });
-    axiosWithAuth()
+    return axiosWithAuth()
     .get(`https://ls-guidr.herokuapp.com/api/profile/${localStorage.getItem("user_id")}`)
     .then(res => {
       console.log("Res Data", res.data);
-      console.log("userID", res.data.id)
+      
       dispatch({
         type: FETCH_PROFILE_SUCCESS,
         profile: res.data

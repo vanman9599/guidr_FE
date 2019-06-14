@@ -76,7 +76,7 @@ class AddProfileForm extends Component {
       <div className="add-user-form">
           {console.log("State", this.state)}
       {console.log("Props", this.props)}  
-      
+      <h1>Add/Edit Profile</h1>
          <input onChange={this.handleChange} value={this.state.first_name} type="text" name="first_name" placeholder="First Name" />
          <input onChange={this.handleChange} value={this.state.last_name} type="text" name="last_name" placeholder="Last Name" />
          <input onChange={this.handleChange} value={this.state.age} type="number" name="age" placeholder="Age" />

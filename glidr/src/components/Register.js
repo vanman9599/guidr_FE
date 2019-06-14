@@ -44,7 +44,7 @@ class Register extends Component {
   render() {
     return (
       <div className="add-user-form">
-            
+            <h1>Sign-up</h1>
          
          <input onChange={this.handleChange} value={this.state.username} type="text" name="username" placeholder="Username" />
          <input onChange={this.handleChange} value={this.state.password} type="password" name="password" placeholder="Passworde" />
